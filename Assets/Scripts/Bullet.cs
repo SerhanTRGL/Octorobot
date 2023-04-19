@@ -8,6 +8,6 @@ public class Bullet : MonoBehaviour {
         Enemy
     }
 
-    [SerializeField] int BulletDamage{get; set;}
-    [SerializeField] BulletSource Source{get; private set;}
+    [SerializeField] public int BulletDamage{get; set;}
+    [SerializeField] public BulletSource Source{get; private set;}
 }
