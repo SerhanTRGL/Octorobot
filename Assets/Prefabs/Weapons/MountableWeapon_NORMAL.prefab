@@ -255,15 +255,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 2786587903069734805}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9859151abde31b9468b20671675d9a96, type: 3}
+  m_Script: {fileID: 11500000, guid: 0116362eb01e6d74eb104394bc76b06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   projectilePrefab: {fileID: 4667641364642360895, guid: 4e67797cd9a23594b862badd16721371, type: 3}
   underProjectileSpawnPoint: {fileID: 2419356596454202477}
   aboveProjectileSpawnPoint: {fileID: 3667757526687948814}
-  projectileSpeed: 400
-  projectileLifetime: 1
-  shootRate: 0.75
+  projectileSpeed: 10
+  projectileLifetime: 2.5
+  shootRate: 2
+  damage: 2
 --- !u!1 &3144962241668824096
 GameObject:
   m_ObjectHideFlags: 0
