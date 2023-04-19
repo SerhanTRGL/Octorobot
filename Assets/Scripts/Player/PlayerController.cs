@@ -85,6 +85,7 @@ public class PlayerController : MonoBehaviour {
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if(bullet.Source == Bullet.BulletSource.Enemy){
                 this.TakeDamage(bullet.BulletDamage);
+                Debug.Log("Player took damage " + bullet.BulletDamage.ToString());
                 Destroy(collision.gameObject);
             }
         }

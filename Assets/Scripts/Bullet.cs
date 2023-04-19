@@ -10,7 +10,4 @@ public class Bullet : MonoBehaviour {
 
     [SerializeField] public int BulletDamage{get; set;}
     [SerializeField] public BulletSource Source{get; set;}
-    private void Start() {
-        Debug.Log("Bullet shooting");
-    }
 }

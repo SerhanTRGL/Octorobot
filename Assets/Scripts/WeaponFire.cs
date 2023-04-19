@@ -7,10 +7,10 @@ public class WeaponFire : MonoBehaviour
     public GameObject projectilePrefab;
     public Transform underProjectileSpawnPoint;
     public Transform aboveProjectileSpawnPoint;
-    public float projectileSpeed = 10f;
-    public float projectileLifetime = 2.5f;
-    public float shootRate = 2f;
-    public int damage;
+    public float projectileSpeed;
+    public float projectileLifetime;
+    public float shootRate;
+    [SerializeField] private int damage;
     Bullet.BulletSource source;
     private void Start() {
         if(transform.parent.CompareTag("Enemy")){
@@ -19,17 +19,23 @@ public class WeaponFire : MonoBehaviour
         else{
             source = Bullet.BulletSource.Player;
         }
-
-        InvokeRepeating(nameof(ShootProjectiles), 1f, shootRate);
     }
 
+private float shootTimer = 0f;
+private void FixedUpdate() {
+    shootTimer += Time.fixedDeltaTime;
+    if(shootTimer >= shootRate){
+        ShootProjectiles();
+        shootTimer = 0f;
+    }
+}
     private void ShootProjectiles() {
-        Debug.Log("Shooting");
         GameObject underProjectile = Instantiate(projectilePrefab, underProjectileSpawnPoint.position, Quaternion.identity);
         GameObject aboveProjectile = Instantiate(projectilePrefab, aboveProjectileSpawnPoint.position, Quaternion.identity);
 
+        SetProjectileDamage(underProjectile, aboveProjectile);
         SetProjectileSource(underProjectile, aboveProjectile);
-        RotateProjectileVisual(underProjectile, aboveProjectile);
+        RotateProjectiles(underProjectile, aboveProjectile);
         SetProjectileVelocity(underProjectile, aboveProjectile);
         DestroyProjectiles(underProjectile, aboveProjectile);
 
@@ -43,17 +49,17 @@ public class WeaponFire : MonoBehaviour
         aboveProjectile.GetComponentInChildren<Bullet>().Source = source;
     }
 
-    private void RotateProjectileVisual(GameObject underProjectile, GameObject aboveProjectile){
-        underProjectile.GetComponentInChildren<SpriteRenderer>().transform.eulerAngles = transform.eulerAngles + (new Vector3(0,0,90));
-        aboveProjectile.GetComponentInChildren<SpriteRenderer>().transform.eulerAngles = transform.eulerAngles + (new Vector3(0, 0, 90));
+    private void RotateProjectiles(GameObject underProjectile, GameObject aboveProjectile){
+        underProjectile.transform.eulerAngles = underProjectileSpawnPoint.transform.eulerAngles;
+        aboveProjectile.transform.eulerAngles = aboveProjectileSpawnPoint.transform.eulerAngles;
     }
 
     private void SetProjectileVelocity(GameObject underProjectile, GameObject aboveProjectile){
         Rigidbody2D underProjectileRb = underProjectile.GetComponent<Rigidbody2D>();
         Rigidbody2D aboveProjectileRb = aboveProjectile.GetComponent<Rigidbody2D>();
 
-        underProjectileRb.velocity = projectileSpeed * Time.deltaTime * transform.right;
-        aboveProjectileRb.velocity = projectileSpeed * Time.deltaTime * transform.right;
+        underProjectileRb.velocity = projectileSpeed * Time.deltaTime * underProjectileSpawnPoint.transform.right;
+        aboveProjectileRb.velocity = projectileSpeed * Time.deltaTime * aboveProjectileSpawnPoint.transform.right;
     }
 
     private void DestroyProjectiles(GameObject underProjectile, GameObject aboveProjectile){

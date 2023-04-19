@@ -7,11 +7,10 @@ TagManager:
   - Mountable
   - Collectible
   - Enemy
-  - EnemyAMMO
-  - AMMO
   - Border
   - Boss
   - EnemySpawner
+  - Bullet
   layers:
   - Default
   - TransparentFX
