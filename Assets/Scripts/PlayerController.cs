@@ -81,11 +81,14 @@ public class PlayerController : MonoBehaviour {
         OnCurrentHealthChanged?.Invoke();
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "EnemyAMMO") {
-            AmmoEnemy ammo = collision.gameObject.GetComponent<AmmoEnemy>();
-            this.TakeDamage(ammo.Damage());
-            Destroy(collision.gameObject);
+        if (collision.gameObject.tag == "Bullet") {
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            if(bullet.Source == Bullet.BulletSource.Enemy){
+                this.TakeDamage(bullet.BulletDamage);
+                Destroy(collision.gameObject);
+            }
         }
+
         if(collision.gameObject.tag == "Border") {
             Debug.Log("Hit a border!");
             this.rb.AddForce(-collision.gameObject.transform.right * 1000f, ForceMode2D.Force);

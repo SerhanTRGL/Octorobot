@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 3686940309002327702}
   - component: {fileID: 5585910621688260230}
-  - component: {fileID: 5517655215742022501}
   - component: {fileID: 3279154028399828050}
   m_Layer: 0
-  m_Name: Ammo
+  m_Name: Bullet
   m_TagString: AMMO
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -56,19 +55,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &5517655215742022501
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4667641364642360895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f8b86299b5acb04db85a3e9d59e3000, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  damage: 2
 --- !u!70 &3279154028399828050
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
