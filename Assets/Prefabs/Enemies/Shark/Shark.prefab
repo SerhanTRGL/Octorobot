@@ -220,13 +220,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0116362eb01e6d74eb104394bc76b06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  bulletStats: {fileID: 11400000, guid: ccf61a839057fdd46bab580c1a2cc62f, type: 2}
   projectilePrefab: {fileID: 4667641364642360895, guid: 4e67797cd9a23594b862badd16721371, type: 3}
   underProjectileSpawnPoint: {fileID: 1465198699865630500}
   aboveProjectileSpawnPoint: {fileID: 8410640917969779495}
-  projectileSpeed: 350
   projectileLifetime: 2.5
   shootRate: 2
-  damage: 1
 --- !u!1 &8954873910841808993
 GameObject:
   m_ObjectHideFlags: 0
