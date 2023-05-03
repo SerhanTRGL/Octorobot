@@ -305,10 +305,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0116362eb01e6d74eb104394bc76b06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 4497250970412700453, guid: bf8edc122b0923442a12b05395fbdfac, type: 3}
+  bulletStats: {fileID: 11400000, guid: 588ad77b82777e04ea99ee2bec0fd521, type: 2}
+  projectilePrefab: {fileID: 4667641364642360895, guid: 4e67797cd9a23594b862badd16721371, type: 3}
   underProjectileSpawnPoint: {fileID: 409467405564426441}
   aboveProjectileSpawnPoint: {fileID: 6501579378390966507}
-  projectileSpeed: 250
   projectileLifetime: 7
   shootRate: 2
 --- !u!1001 &7009641477934027390

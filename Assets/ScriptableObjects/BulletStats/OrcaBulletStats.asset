@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96c699938aa03f4b8b56ca2040c8ec9, type: 3}
+  m_Name: OrcaBulletStats
+  m_EditorClassIdentifier: 
+  bulletDamage: 20
+  bulletScale: {x: 3, y: 3, z: 3}
+  bulletSprite: {fileID: 21300000, guid: 65a75da3423afbe499d44b4e8af69458, type: 3}
+  bulletVelocity: 100
+  bulletSource: 1
+  bulletSourceName: Orca

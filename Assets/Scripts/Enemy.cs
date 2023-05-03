@@ -98,10 +98,12 @@ public class Enemy : MonoBehaviour
         }
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "AMMO") {
-            Ammo ammo = collision.gameObject.GetComponent<Ammo>();
-            this.TakeDamage(ammo.Damage());
-            Destroy(collision.gameObject);
+        if (collision.gameObject.tag == "Bullet") {
+            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
+            if(bullet.Source == Bullet.BulletSource.Player){
+                this.TakeDamage(bullet.BulletDamage);
+                Destroy(collision.gameObject);
+            }
         }
     }
 }
