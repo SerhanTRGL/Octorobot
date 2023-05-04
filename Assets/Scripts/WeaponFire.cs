@@ -5,6 +5,7 @@ using UnityEngine;
 using UnityEngine.Pool;
 public class WeaponFire : MonoBehaviour
 {
+    [SerializeField] private BasicWeapon weapon;
     private IObjectPool<GameObject> bulletPool; //ObjectPooling
     [SerializeField] private BulletStatsSO bulletStats;
     public GameObject projectilePrefab;
@@ -12,7 +13,6 @@ public class WeaponFire : MonoBehaviour
     public Transform aboveProjectileSpawnPoint;
     public float projectileLifetime;
     public float shootRate;
-    private float shootTimer = 0f;
 
     private void Awake() {
         bulletPool = new ObjectPool<GameObject>(
@@ -40,32 +40,22 @@ public class WeaponFire : MonoBehaviour
         bullet.SetActive(false);
     }
 
-    /*private void FixedUpdate() {
-        shootTimer += Time.fixedDeltaTime;
-        if(shootTimer >= shootRate){
-            ShootProjectiles();
-            shootTimer = 0f;
-        }
-    }*/
     private void ShootProjectiles() {
-        
-        GameObject underProjectile = bulletPool.Get();
-        GameObject aboveProjectile = bulletPool.Get();
+        if(weapon == null || (weapon != null && weapon.IsMounted())){
+            GameObject underProjectile = bulletPool.Get();
+            GameObject aboveProjectile = bulletPool.Get();
 
-        SetProjectilePosition(underProjectile, aboveProjectile);
-        SetProjectileDamage(underProjectile, aboveProjectile);
-        SetProjectileSource(underProjectile, aboveProjectile);
-        SetProjectileSprite(underProjectile, aboveProjectile);
-        SetProjectileScale(underProjectile, aboveProjectile);
-        RotateProjectiles(underProjectile, aboveProjectile);
-        SetProjectileVelocity(underProjectile, aboveProjectile);
+            SetProjectilePosition(underProjectile, aboveProjectile);
+            SetProjectileDamage(underProjectile, aboveProjectile);
+            SetProjectileSource(underProjectile, aboveProjectile);
+            SetProjectileSprite(underProjectile, aboveProjectile);
+            SetProjectileScale(underProjectile, aboveProjectile);
+            RotateProjectiles(underProjectile, aboveProjectile);
+            SetProjectileVelocity(underProjectile, aboveProjectile);
         
-        if(this.gameObject.activeSelf){
-            IEnumerator releaseProjectileCoroutine = ReleaseProjectiles(underProjectile, aboveProjectile);
-            try{
+            if(gameObject.activeInHierarchy){
+                IEnumerator releaseProjectileCoroutine = ReleaseProjectiles(underProjectile, aboveProjectile);
                 StartCoroutine(releaseProjectileCoroutine);
-            }catch(Exception){
-
             }
         }
     }

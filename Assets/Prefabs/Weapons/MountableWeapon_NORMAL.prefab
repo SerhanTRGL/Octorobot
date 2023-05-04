@@ -258,6 +258,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0116362eb01e6d74eb104394bc76b06b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  weapon: {fileID: 4912464850247457141}
   bulletStats: {fileID: 11400000, guid: 0fa34ef7d5cfaff449308a6d583d355f, type: 2}
   projectilePrefab: {fileID: 4667641364642360895, guid: 4e67797cd9a23594b862badd16721371, type: 3}
   underProjectileSpawnPoint: {fileID: 2419356596454202477}
