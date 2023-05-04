@@ -64,7 +64,7 @@ public class WeaponFire : MonoBehaviour
             IEnumerator releaseProjectileCoroutine = ReleaseProjectiles(underProjectile, aboveProjectile);
             try{
                 StartCoroutine(releaseProjectileCoroutine);
-            }catch(Exception e){
+            }catch(Exception){
 
             }
         }

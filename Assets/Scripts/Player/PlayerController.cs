@@ -81,27 +81,15 @@ public class PlayerController : MonoBehaviour {
         OnCurrentHealthChanged?.Invoke();
     }
     private void OnTriggerEnter2D(Collider2D collision) {
-        HandleBulletInteraction(collision);
+        HandleBorderCollision(collision);
+    }
 
+    private void HandleBorderCollision(Collider2D collision){
         if(collision.gameObject.tag == "Border") {
             Debug.Log("Hit a border!");
             this.rb.AddForce(-collision.gameObject.transform.right * 1000f, ForceMode2D.Force);
         }
     }
-
-    private void HandleBulletInteraction(Collider2D collision){
-            if (collision.gameObject.tag == "Bullet") {
-            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            if(bullet.Source == Bullet.BulletSource.Enemy){
-                this.TakeDamage(bullet.BulletDamage);
-                Debug.Log("Player took damage " + bullet.BulletDamage.ToString());
-                if(bullet.gameObject.activeSelf){
-                    bullet.GetPool().Release(bullet.gameObject);
-                }
-            }
-        }
-    }
-
     private void OnTriggerStay2D(Collider2D collision) {
         if (collision.gameObject.tag == "Border") {
             Debug.Log("Hit a border!");
