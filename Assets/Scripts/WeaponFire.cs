@@ -1,9 +1,11 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.Pool;
 public class WeaponFire : MonoBehaviour
 {
+    private IObjectPool<GameObject> bulletPool; //ObjectPooling
     [SerializeField] private BulletStatsSO bulletStats;
     public GameObject projectilePrefab;
     public Transform underProjectileSpawnPoint;
@@ -11,25 +13,66 @@ public class WeaponFire : MonoBehaviour
     public float projectileLifetime;
     public float shootRate;
     private float shootTimer = 0f;
-    private void FixedUpdate() {
+
+    private void Awake() {
+        bulletPool = new ObjectPool<GameObject>(
+            CreateBullet,
+            OnGet,
+            OnRelease
+        );
+    }
+
+    private void Start(){
+        InvokeRepeating(nameof(ShootProjectiles), 1, shootRate);
+    }
+
+    private GameObject CreateBullet(){
+        GameObject bullet = Instantiate(projectilePrefab);
+        bullet.GetComponent<Bullet>().SetPool(bulletPool);
+        return bullet;
+    } 
+
+     private void OnGet(GameObject bullet){
+        bullet.SetActive(true);
+    }
+
+    private void OnRelease(GameObject bullet){
+        bullet.SetActive(false);
+    }
+
+    /*private void FixedUpdate() {
         shootTimer += Time.fixedDeltaTime;
         if(shootTimer >= shootRate){
             ShootProjectiles();
             shootTimer = 0f;
         }
-    }
+    }*/
     private void ShootProjectiles() {
-        GameObject underProjectile = Instantiate(projectilePrefab, underProjectileSpawnPoint.position, Quaternion.identity);
-        GameObject aboveProjectile = Instantiate(projectilePrefab, aboveProjectileSpawnPoint.position, Quaternion.identity);
+        
+        GameObject underProjectile = bulletPool.Get();
+        GameObject aboveProjectile = bulletPool.Get();
 
+        SetProjectilePosition(underProjectile, aboveProjectile);
         SetProjectileDamage(underProjectile, aboveProjectile);
         SetProjectileSource(underProjectile, aboveProjectile);
         SetProjectileSprite(underProjectile, aboveProjectile);
         SetProjectileScale(underProjectile, aboveProjectile);
         RotateProjectiles(underProjectile, aboveProjectile);
         SetProjectileVelocity(underProjectile, aboveProjectile);
-        DestroyProjectiles(underProjectile, aboveProjectile);
+        
+        if(this.gameObject.activeSelf){
+            IEnumerator releaseProjectileCoroutine = ReleaseProjectiles(underProjectile, aboveProjectile);
+            try{
+                StartCoroutine(releaseProjectileCoroutine);
+            }catch(Exception e){
 
+            }
+        }
+    }
+
+    private void SetProjectilePosition(GameObject underProjectile, GameObject aboveProjectile){
+        underProjectile.transform.position = underProjectileSpawnPoint.position;
+        aboveProjectile.transform.position = aboveProjectileSpawnPoint.position;
     }
     private void SetProjectileDamage(GameObject underProjectile, GameObject aboveProjectile){
         underProjectile.GetComponentInChildren<Bullet>().BulletDamage = bulletStats.bulletDamage;;
@@ -60,9 +103,14 @@ public class WeaponFire : MonoBehaviour
         aboveProjectileRb.velocity = bulletStats.bulletVelocity * Time.deltaTime * aboveProjectileSpawnPoint.transform.right;
     }
 
-    private void DestroyProjectiles(GameObject underProjectile, GameObject aboveProjectile){
-        Destroy(underProjectile, projectileLifetime);
-        Destroy(aboveProjectile, projectileLifetime);
+    private IEnumerator ReleaseProjectiles(GameObject underProjectile, GameObject aboveProjectile){
+        yield return new WaitForSeconds(projectileLifetime);
+        if(underProjectile.activeSelf){
+            bulletPool.Release(underProjectile);
+        }
+        if(aboveProjectile.activeSelf){
+            bulletPool.Release(aboveProjectile);
+        }
     }
 }
 

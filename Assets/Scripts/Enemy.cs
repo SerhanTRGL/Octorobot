@@ -102,7 +102,9 @@ public class Enemy : MonoBehaviour
             Bullet bullet = collision.gameObject.GetComponent<Bullet>();
             if(bullet.Source == Bullet.BulletSource.Player){
                 this.TakeDamage(bullet.BulletDamage);
-                Destroy(collision.gameObject);
+                if(bullet.gameObject.activeSelf){
+                    bullet.GetPool().Release(bullet.gameObject);
+                }
             }
         }
     }
