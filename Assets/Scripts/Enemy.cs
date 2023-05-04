@@ -97,15 +97,4 @@ public class Enemy : MonoBehaviour
             }
         }
     }
-    private void OnTriggerEnter2D(Collider2D collision) {
-        if (collision.gameObject.tag == "Bullet") {
-            Bullet bullet = collision.gameObject.GetComponent<Bullet>();
-            if(bullet.Source == Bullet.BulletSource.Player){
-                this.TakeDamage(bullet.BulletDamage);
-                if(bullet.gameObject.activeSelf){
-                    bullet.GetPool().Release(bullet.gameObject);
-                }
-            }
-        }
-    }
 }
