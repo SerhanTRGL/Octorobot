@@ -1,8 +1,12 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class EnemySpawner : MonoBehaviour {
+
+    //TODO - CREATE A BASE PREFAB FOR ENEMY. CHANGE ENEMY DEPENDING ON ONGET CALL
+    private ObjectPool<GameObject> enemyPool;
     public Rigidbody2D playerRigidbody;
     public GameObject[] enemyPrefabs;
     public GameObject bossPrefab;
@@ -25,7 +29,29 @@ public class EnemySpawner : MonoBehaviour {
     private void Start() {
         currentSpawnCount = initialSpawnCount;
         mainCamera = Camera.main;
+
+        enemyPool = new ObjectPool<GameObject>(
+            InstantiateEnemy,
+            OnGet,
+            OnRelease
+        );
+
         StartCoroutine(SpawnEnemies());
+    }
+
+    private GameObject InstantiateEnemy()
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnGet(GameObject @object)
+    {
+        throw new NotImplementedException();
+    }
+
+    private void OnRelease(GameObject @object)
+    {
+        throw new NotImplementedException();
     }
 
     private IEnumerator SpawnEnemies() {

@@ -5,9 +5,9 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int maxHealth = 20;
-    [SerializeField] private int currentHealth = 20;
-    [SerializeField] private int contactDamage = 3;
+    [SerializeField] private int maxHealth;
+    [SerializeField] private int currentHealth;
+    [SerializeField] private int contactDamage;
 
     [SerializeField] private float moveSpeed;
     [SerializeField] private Rigidbody2D enemyRigidBody;
@@ -17,6 +17,7 @@ public class Enemy : MonoBehaviour
     [SerializeField] private float contactDamageCooldown = 1f;
 
     [SerializeField] private AudioClip enemyDeathSound;
+    [SerializeField] private bool isBoss;
 
     private bool isDead = false;
     private float contactDamageTimer = 0f;
@@ -68,7 +69,7 @@ public class Enemy : MonoBehaviour
                 dropWeapon.gameObject.SetActive(true);
             }
 
-            if (GetComponentInChildren<SpriteRenderer>().tag == "Boss") {
+            if (isBoss) {
                 OnBossKilled?.Invoke();
             }
             if (!isDead) {
