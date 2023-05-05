@@ -6,7 +6,16 @@ using UnityEngine.Pool;
 public class EnemySpawner : MonoBehaviour {
 
     //TODO - CREATE A BASE PREFAB FOR ENEMY. CHANGE ENEMY DEPENDING ON ONGET CALL
+    //Spawn the next wave if all the enemies in the current wave are cleared
+    #region UPDATE
     private ObjectPool<GameObject> enemyPool;
+    public EnemySO[] normalEnemyTypes;
+    public EnemySO[] dropEnemyTypes;
+    public EnemySO[] bossEnemyTypes;
+    public GameObject baseEnemyPrefab;
+    
+    #endregion
+
     public Rigidbody2D playerRigidbody;
     public GameObject[] enemyPrefabs;
     public GameObject bossPrefab;

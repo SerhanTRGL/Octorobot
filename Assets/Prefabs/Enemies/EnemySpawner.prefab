@@ -44,13 +44,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6e608fd1c19f4654795e74469d04efd7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  normalEnemyTypes: []
+  dropEnemyTypes: []
+  bossEnemyTypes: []
+  baseEnemyPrefab: {fileID: 0}
   playerRigidbody: {fileID: 0}
   enemyPrefabs:
-  - {fileID: 8586812201216466631, guid: 6fb9ce501d676d4489c499050b272ae1, type: 3}
-  - {fileID: 3382076293477559539, guid: 059a215f5f78bb9409d05fb8bd96a868, type: 3}
-  - {fileID: 7900435170307029521, guid: 418e90d34472cbb46bf1d47737a29b56, type: 3}
-  - {fileID: 501077494315702652, guid: 59efe8d0a4c165342b92f2a48e5aad20, type: 3}
-  bossPrefab: {fileID: 4210424438886867734, guid: 6ba5f4cefe430fc4d8e933795bde112f, type: 3}
+  - {fileID: 5723693659721849235, guid: 2b627646b6f884349b9f973963b5bf40, type: 3}
+  - {fileID: 8810531532968029780, guid: 2d8bafae6a59f8a499c79e7923c8bde6, type: 3}
+  - {fileID: 6419798794616413359, guid: c535f0f36169e67449789e28fbb0b519, type: 3}
+  - {fileID: 8581752517951946717, guid: 4e57d7283808a10439b1b9a37a8b099f, type: 3}
+  bossPrefab: {fileID: 7345361241755575974, guid: 3fcf7b9610fd06c46975c752d1526dab, type: 3}
   initialSpawnCount: 20
   spawnDelay: 0.1
   secondsUntilNextWave: 15

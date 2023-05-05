@@ -10,5 +10,6 @@ public class EnemySO : ScriptableObject{
     BasicWeapon dropWeapon;
     bool isBoss;
     Sprite enemySprite;
+    BulletStatsSO enemyBulletStats;
     string enemyName;
 }

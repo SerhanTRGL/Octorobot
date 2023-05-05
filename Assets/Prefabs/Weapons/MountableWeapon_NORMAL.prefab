@@ -263,8 +263,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4667641364642360895, guid: 4e67797cd9a23594b862badd16721371, type: 3}
   underProjectileSpawnPoint: {fileID: 2419356596454202477}
   aboveProjectileSpawnPoint: {fileID: 3667757526687948814}
-  projectileLifetime: 2.5
-  shootRate: 2
+  projectileLifetime: 1.99
+  shootRate: 1
 --- !u!1 &3144962241668824096
 GameObject:
   m_ObjectHideFlags: 0

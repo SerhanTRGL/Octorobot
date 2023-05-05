@@ -434,5 +434,5 @@ MonoBehaviour:
   projectilePrefab: {fileID: 4667641364642360895, guid: 4e67797cd9a23594b862badd16721371, type: 3}
   underProjectileSpawnPoint: {fileID: 1165034329844415171}
   aboveProjectileSpawnPoint: {fileID: 9136865883086359670}
-  projectileLifetime: 2.5
-  shootRate: 2
+  projectileLifetime: 1.99
+  shootRate: 1

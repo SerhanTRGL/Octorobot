@@ -162,11 +162,16 @@ PrefabInstance:
     - target: {fileID: 7203500951706742811, guid: 2e3d15a685915b049a93626a8e2593e9, type: 3}
       propertyPath: enemyRigidBody
       value: 
-      objectReference: {fileID: 984007199617509366, guid: 59efe8d0a4c165342b92f2a48e5aad20, type: 3}
+      objectReference: {fileID: 8148843211116138718}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 2e3d15a685915b049a93626a8e2593e9, type: 3}
 --- !u!4 &4875788839961040235 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 1657482831059818444, guid: 2e3d15a685915b049a93626a8e2593e9, type: 3}
+  m_PrefabInstance: {fileID: 6100908305072259751}
+  m_PrefabAsset: {fileID: 0}
+--- !u!50 &8148843211116138718 stripped
+Rigidbody2D:
+  m_CorrespondingSourceObject: {fileID: 2719125783816589945, guid: 2e3d15a685915b049a93626a8e2593e9, type: 3}
   m_PrefabInstance: {fileID: 6100908305072259751}
   m_PrefabAsset: {fileID: 0}
